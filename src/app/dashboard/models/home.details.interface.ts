@@ -6,5 +6,4 @@ export interface HomeDetails {
   locale: string;
   gender: string;
   pictureUrl: string;
-  facebookId: number;
 }

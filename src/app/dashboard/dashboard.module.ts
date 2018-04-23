@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule }        from '@angular/forms';
-import { SharedModule }       from '../shared/modules/shared.module';
+import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/modules/shared.module';
 
-import { routing }  from './dashboard.routing';
+import { routing } from './dashboard.routing';
 import { RootComponent } from './root/root.component';
 import { HomeComponent } from './home/home.component';
 import { DashboardService } from './services/dashboard.service';
+import { ListUsersComponent } from './Users/list-users/list-users.component';
 
 import { AuthGuard } from '../auth.guard';
 import { SettingsComponent } from './settings/settings.component';
@@ -19,8 +20,8 @@ import { SettingsComponent } from './settings/settings.component';
     routing,
     SharedModule
   ],
-  declarations: [RootComponent,HomeComponent, SettingsComponent],
+  declarations: [RootComponent, HomeComponent, SettingsComponent, ListUsersComponent],
   exports:      [ ],
-  providers:    [AuthGuard,DashboardService]
+  providers:    [AuthGuard, DashboardService]
 })
 export class DashboardModule { }

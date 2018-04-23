@@ -1,37 +1,77 @@
+
+<div class="site-wrapper">
+  <div class="site-wrapper-inner">
+
 <div class="row">
-    <div class="col-md-6 new-user-alert">
-      	<div *ngIf="brandNew" class="alert alert-success" role="alert">
-            <strong>All set!</strong> Connectez_vous avec votre compte
-        </div>
-        <h2>Connexion</h2>
+  <div class="col-md-6 new-user-alert">
+    <div *ngIf="brandNew" class="alert alert-success" role="alert">
+      <strong>All set!</strong> Connectez_vous avec votre compte
     </div>
+  </div>
 </div>
 
-  <div class="row">
-    <div class="col-md-6">
+<div class="cover-container">
+  <div class="container-fluid">
+    <div class="row Rowlogin imgCnx">
+      <div class="col-md-4 colorlogin1 ColSM col-lg-4 col-xl-4 col-sm-4 col-12 text-center">
+        <h3 class="white font-weight-bold positiontextelogin text-center">
+
+          <img class="img-responsive imagelog imagelogXS" src="../assets/images/LogoEMOS.png" wp-cz-control="blocks_content_3_4_image"
+            wp-cz-control-label="Image" wp-cz-control-type="media" wp-cz-control-mime-type="image" wp-cz-control-section="blocks_content_3_4"
+            wp-attachment-image wp-attachment-image-theme-mod="blocks_content_3_4_image" />
+          <br>
+        </h3>
+      </div>
+      <div class="col-md-8 colorlogin col-lg-8 col-xl-8 col-sm-8 col-12">
+        <h1 class="font-weight-bold river Positiontitrelogin text-center">Connexion
+          <br>
+        </h1>
         <form #f="ngForm" novalidate (ngSubmit)="login(f)">
 
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input id="email" type="text" required name="email" class="form-control" placeholder="Email" [ngModel]="credentials.email" #email="ngModel" tmFocus validateEmail>
-              <small [hidden]="email.valid || (email.pristine && !submitted)" class="text-danger">Entrez un email valid</small>
-            </div>
-            <div class="form-group">
-              <label for="password">Mot de passe</label>
-              <input type="password" class="form-control" id="password" required name="password" placeholder="Mot de passe" ngModel>
-            </div>
-
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary" [disabled]="f.invalid || isRequesting">Se connecter</button>
-                <app-spinner [isRunning]="isRequesting"></app-spinner>
-            </div>
-
-            <div *ngIf="errors" class="alert alert-danger" role="alert">
-                <strong>Oops!</strong> {{errors}}
+          <div class="form-group">
+            <label for="email">Identifiant</label>
+            <input id="email" type="text" required name="email" class="form-control" placeholder="Identifiant" [ngModel]="credentials.email"
+              #email="ngModel" tmFocus validateEmail>
+            <small [hidden]="email.valid || (email.pristine && !submitted)" class="text-danger">Entrez un email valid</small>
+          </div>
+          <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <input type="password" class="form-control" id="password" required name="password" placeholder="Mot de passe" ngModel>
+            <div class="form-group text-right PositionID">
+              <a href="#" class="river marina-hover PositionID">Mot de passe oublié ?</a>
+              <div class="container">
+                <div class="row">
+                  <div class="col-12 col-sm-6">
+                    <div id="landing3" class="Positionbouton PositionboutonXL PositionboutonLG PositionboutonMD PositionboutonXS PositionboutonSM">
+                      <a href="#" role="button" routerLink="/register" class="button btn btn-block btn-lg boutonloginXL boutonloginLG boutonloginMD boutonloginSM boutonloginXS">Inscription</a>
+                    </div>
+                    <div id="landing2" class="Positionbouton PositionboutonXL PositionboutonLG PositionboutonMD PositionboutonXS PositionboutonSM">
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <div id="landing2" class="Positionbouton PositionboutonXL PositionboutonLG PositionboutonMD PositionboutonXS PositionboutonSM">
+                      <button type="submit" class="button btn btn-block btn-lg boutonloginXL boutonloginLG boutonloginMD boutonloginSM boutonloginXS"
+                        [disabled]="f.invalid || isRequesting">Se connecter</button>
+                      <app-spinner [isRunning]="isRequesting"></app-spinner>
+                      <p class="font-italic guardsman">Champs obligatoires *</p>
+                    </div>
+                  </div>
+                </div>
               </div>
+            </div>
+          </div>
 
-          </form>
-     </div>
+
+          <div *ngIf="errors" class="alert alert-danger" role="alert">
+            <strong>Oops!</strong> {{errors}}
+          </div>
+
+        </form>
+      </div>
+    </div>
   </div>
+</div>
 
+</div>
+</div>
 

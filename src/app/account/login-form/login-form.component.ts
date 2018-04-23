@@ -1,5 +1,6 @@
+// tslint:disable-next-line:import-blacklist
 import { Subscription } from 'rxjs';
-import { Component, OnInit,OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Credentials } from '../../shared/models/credentials.interface';
@@ -18,14 +19,12 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   brandNew: boolean;
   errors: string;
   isRequesting: boolean;
-  submitted: boolean = false;
+  submitted: boolean;
   credentials: Credentials = { email: '', password: '' };
-
-  constructor(private userService: UserService, private router: Router, private activatedRoute: ActivatedRoute) { }
+   constructor(private userService: UserService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
     ngOnInit() {
-
-    // subscribe to router event
+     // subscribe to router event
     this.subscription = this.activatedRoute.queryParams.subscribe(
       (param: any) => {
          this.brandNew = param['brandNew'];
