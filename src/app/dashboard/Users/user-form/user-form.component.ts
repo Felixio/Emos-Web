@@ -46,7 +46,7 @@ export class UserFormComponent implements OnInit {
         // this.notificationService.printErrorMessage(error);
       });
     }
-    this.ModificationMode = '';
+
      }
 
 
