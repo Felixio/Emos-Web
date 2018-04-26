@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, OnChanges, SimpleChanges, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnChanges, SimpleChanges, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { User } from '../../models/user.interface';
 import { DashboardService } from '../../services/dashboard.service';
 import {PageSettingsModel } from '@syncfusion/ej2-ng-grids';
@@ -14,8 +14,7 @@ import { UserFormComponent } from '../user-form/user-form.component';
 })
 export class ListUsersComponent implements OnInit {
   showDialog = false;
-  @ViewChild('userGrid')
-  public userGrid: GridComponent;
+  @ViewChild('userGrid') public userGrid: GridComponent;
   public users: Array<User> ;
   public pageSettings: PageSettingsModel;
   @ViewChild('ejDialog') ejDialog: DialogComponent;
@@ -27,7 +26,7 @@ export class ListUsersComponent implements OnInit {
 
   public targetElement: HTMLElement;
   public target = '#body';
-  constructor(private dashboardService: DashboardService) { }
+  constructor(private dashboardService: DashboardService, private changeDetector: ChangeDetectorRef) { }
 
   ngOnInit() {
 
@@ -45,10 +44,13 @@ export class ListUsersComponent implements OnInit {
   handleSelect(args: RowSelectEventArgs) {
 
     this.showDialog = true;
+    this.changeDetector.detectChanges();
+
     this.userForm.User = <User> args.data;
-     this.userForm.ModificationMode = 'Edit';
-     this.userForm.title = 'Modifier utilisateur';
-     this.ejDialog.show();
+    this.userForm.ModificationMode = 'Edit';
+    this.userForm.title = 'Modifier utilisateur';
+    setTimeout(() => { this.ejDialog.show(); });
+
 
   }
 
@@ -68,6 +70,7 @@ export class ListUsersComponent implements OnInit {
     this.ejDialog.hide();
     this.ejDialog.refresh();
   }
+
   click_AddUser() {
 
     this.showDialog = true;
