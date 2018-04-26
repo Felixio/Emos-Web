@@ -14,6 +14,7 @@ export class UserFormComponent implements OnInit {
   @Input() User: User = {  firstName: '', id: 0, lastName: '', office: '',   rank: '', service: '', team: ''   };
   @Input() ModificationMode: string;
   @Output() update = new EventEmitter<any>();
+  @Output() cancel = new EventEmitter<any>();
 
   constructor(private dashboardService: DashboardService) { }
 
@@ -26,11 +27,14 @@ export class UserFormComponent implements OnInit {
     .subscribe((user: User) => {
       this.User = user;
       this.update.emit(user);
-
     },
     error => {
       // this.notificationService.printErrorMessage(error);
     });
+  }
+
+  cancelSave() {
+    this.cancel.emit();
   }
 
   }
