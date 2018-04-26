@@ -40,7 +40,6 @@ export class ListUsersComponent implements OnInit {
     error => {
       // this.notificationService.printErrorMessage(error);
     });
-    this.userForm.ModificationMode = '';
   }
 
   handleSelect(args: RowSelectEventArgs) {
