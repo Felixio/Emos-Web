@@ -5,6 +5,7 @@ import {PageSettingsModel } from '@syncfusion/ej2-ng-grids';
 import { GridComponent, RowSelectEventArgs } from '@syncfusion/ej2-ng-grids';
 import { DialogComponent } from '@syncfusion/ej2-ng-popups';
 import { UserFormComponent } from '../user-form/user-form.component';
+import { CommandModel, EditSettingsModel } from '@syncfusion/ej2-ng-grids';
 
 
 @Component({
@@ -13,6 +14,9 @@ import { UserFormComponent } from '../user-form/user-form.component';
   styleUrls: ['./list-users.component.css']
 })
 export class ListUsersComponent implements OnInit {
+
+  public editSettings: EditSettingsModel;
+  public commands: CommandModel[];
   showDialog = false;
   @ViewChild('userGrid') public userGrid: GridComponent;
   public users: Array<User> ;
@@ -39,6 +43,12 @@ export class ListUsersComponent implements OnInit {
     error => {
       // this.notificationService.printErrorMessage(error);
     });
+
+    this.editSettings = { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Normal', allowEditOnDblClick: false };
+    this.commands = [{ type: 'Edit', buttonOption: { iconCss: ' e-icons e-edit', cssClass: 'e-flat' } },
+    { type: 'Delete', buttonOption: { iconCss: 'e-icons e-delete', cssClass: 'e-flat' } },
+    { type: 'Save', buttonOption: { iconCss: 'e-icons e-update', cssClass: 'e-flat' } },
+    { type: 'Cancel', buttonOption: { iconCss: 'e-icons e-cancel-icon', cssClass: 'e-flat' } }];
   }
 
   handleSelect(args: RowSelectEventArgs) {

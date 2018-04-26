@@ -13,7 +13,9 @@
 <div id="DivListUsers" #targetDiv class="tile mb-4 positionXS positionSM positionMD"  >
 
   <div >
-    <ejs-grid id='userGrid' #userGrid   [dataSource]="users" [allowPaging]='true' [allowFiltering]='true' [allowSorting]='true' [pageSettings]='pageSettings'  (rowSelected)='handleSelect($event)'>
+    <ejs-grid id='userGrid' #userGrid   [dataSource]="users" [allowPaging]='true'
+    [allowFiltering]='true' [allowSorting]='true' [pageSettings]='pageSettings' [editSettings]='editSettings'
+    (rowSelected)='handleSelect($event)'>
         <e-columns class="row bg-white ConventionXL ConventionLG ConventionMD ConventionSM ConventionXS RowXL" style="box-shadow: rgba(0, 0, 0, 0.5) 0.7px 2px 5px;">
             <e-column field='firstName' headerText='Nom' textAlign='center' width=90></e-column>
             <e-column field='lastName' headerText='Prénom' textAlign='center' width=120></e-column>
@@ -21,6 +23,7 @@
             <e-column field='office' headerText='Bureau' textAlign='center' ></e-column>
             <e-column field='service' headerText='Service' textAlign='center'  ></e-column>
             <e-column field='team' headerText='Equipe' textAlign='center'  ></e-column>
+            <e-column headerText='Commands' width=120 [commands]='commands'></e-column>
         </e-columns>
         </ejs-grid>
 </div>
