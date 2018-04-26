@@ -15,6 +15,7 @@ export class UserFormComponent implements OnInit {
   @Input() User: User = {  firstName: '', id: 0, lastName: '', office: '',   rank: '', service: '', team: ''   };
     ModificationMode: string ;
   @Output() update = new EventEmitter<any>();
+  @Output() cancel = new EventEmitter<any>();
 
   constructor(private dashboardService: DashboardService) { }
 
@@ -47,6 +48,14 @@ export class UserFormComponent implements OnInit {
     }
     this.ModificationMode = '';
      }
+
+
+
+
+
+  cancelSave() {
+    this.cancel.emit();
+  }
 
   }
 

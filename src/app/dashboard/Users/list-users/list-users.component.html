@@ -31,7 +31,9 @@
 </td>
 
 <div #container ></div>
-<ejs-dialog *ngIf="showDialog"  [isModal]='true'  id='dialog' showOnInit="false" #ejDialog  width='75%' [target]="target" (overlayClick)="overlayClick()" >
-  <app-user-form  #userForm (update)="update($event)" ></app-user-form>
+
+<ejs-dialog [isModal]='true'  id='dialog' #ejDialog  width='75%' [target]="target" (overlayClick)="overlayClick()" >
+  <app-user-form  #userForm (update)="update($event)" (cancel)="cancelSave()"  ></app-user-form>
+
 </ejs-dialog>
 </div>

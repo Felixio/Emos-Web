@@ -43,17 +43,9 @@ export class ListUsersComponent implements OnInit {
     this.userForm.ModificationMode = '';
   }
 
-  // initializeTarget() {
-  //   this.targetElement = this.container.nativeElement.parentElement;
-
-  // }
-
   handleSelect(args: RowSelectEventArgs) {
 
     this.showDialog = true;
-     console.log(args.data);
-
-    // this.initializeTarget();
     this.userForm.User = <User> args.data;
      this.userForm.ModificationMode = 'Edit';
      this.userForm.title = 'Modifier utilisateur';
@@ -84,7 +76,10 @@ export class ListUsersComponent implements OnInit {
     this.userForm.ModificationMode = 'Add';
     this.userForm.title = 'Ajouter utilisateur';
     this.ejDialog.show();
+  }
 
+  cancelSave() {
+    this.ejDialog.hide();
   }
 
 }
