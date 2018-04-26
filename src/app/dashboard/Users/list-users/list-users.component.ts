@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnChanges, SimpleChanges, AfterViewInit } from '@angular/core';
 import { User } from '../../models/user.interface';
 import { DashboardService } from '../../services/dashboard.service';
+import {PageSettingsModel } from '@syncfusion/ej2-ng-grids';
+import { GridComponent, RowSelectEventArgs } from '@syncfusion/ej2-ng-grids';
+import { DialogComponent } from '@syncfusion/ej2-ng-popups';
+import { UserFormComponent } from '../user-form/user-form.component';
+
 
 @Component({
   selector: 'app-list-users',
@@ -8,12 +13,25 @@ import { DashboardService } from '../../services/dashboard.service';
   styleUrls: ['./list-users.component.css']
 })
 export class ListUsersComponent implements OnInit {
-
-  public users: Array<User>;
-
+  showDialog = false;
+  @ViewChild('userGrid')
+  public userGrid: GridComponent;
+  public users: Array<User> ;
+  public pageSettings: PageSettingsModel;
+  @ViewChild('ejDialog') ejDialog: DialogComponent;
+  // Create element reference for dialog target element.
+  @ViewChild('container', { read: ElementRef }) container: ElementRef;
+  @ViewChild('targetDiv', { read: ElementRef }) targetDiv: ElementRef;
+  // The Dialog shows within the target element.
+  @ViewChild('userForm') userForm: UserFormComponent;
+  public targetElement: HTMLElement;
+  public target = '#body';
   constructor(private dashboardService: DashboardService) { }
 
   ngOnInit() {
+
+    this.pageSettings = { pageSize: 10 };
+
     this.dashboardService.getUsers()
     .subscribe((users: Array<User>) => {
       this.users = users;
@@ -21,6 +39,40 @@ export class ListUsersComponent implements OnInit {
     error => {
       // this.notificationService.printErrorMessage(error);
     });
+  }
+
+  // initializeTarget() {
+  //   this.targetElement = this.container.nativeElement.parentElement;
+
+  // }
+
+  handleSelect(args: RowSelectEventArgs) {
+    this.showDialog = true;
+     console.log(args.data);
+
+    // this.initializeTarget();
+    this.userForm.User = <User> args.data;
+    this.userForm.ModificationMode = 'Edit';
+    this.ejDialog.show();
+  }
+
+  overlayClick() {
+    this.ejDialog.hide();
+  }
+
+  update(user) {
+    this.ejDialog.hide();
+
+    this.dashboardService.getUsers()
+    .subscribe((users: Array<User>) => {
+      this.users = users;
+      this.userGrid.dataSource = users;
+      this.userGrid.refresh();
+    },
+    error => {
+      // this.notificationService.printErrorMessage(error);
+    });
+
   }
 
 }

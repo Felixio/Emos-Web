@@ -36,6 +36,17 @@ export class DashboardService extends BaseService {
     .catch(this.handleError);
 }
 
+updateUser(user: User): Observable<User> {
+  const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    const authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', `Bearer ${authToken}`);
+
+  return this.http.put(this.baseUrl + '/dashboard/users', JSON.stringify(user), {headers})
+    .map(response => response.json())
+    .catch(this.handleError);
+}
+
   getHomeDetails(): Observable<HomeDetails> {
       const headers = new Headers();
       headers.append('Content-Type', 'application/json');

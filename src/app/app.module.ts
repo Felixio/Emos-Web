@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -18,6 +19,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 
 import { ConfigService } from './shared/utils/config.service';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +37,8 @@ import { ConfigService } from './shared/utils/config.service';
   providers: [ConfigService, {
     provide: XHRBackend,
     useClass: AuthenticateXHRBackend
-  }],
+  }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

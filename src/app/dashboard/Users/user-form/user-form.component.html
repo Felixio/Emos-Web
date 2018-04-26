@@ -1,0 +1,88 @@
+  <div class="modal-dialog" role="document" style="max-width: 900px;">
+      <div class="panel-body">
+          <h2 class="Positiontitre text-center font-weight-bold marina positiontitreXS" style="margin-top: 2px; padding-bottom: 21px;">
+              Modifier utilisateur
+          </h2>
+      <div class="modal-content">
+  <div class="my-4 form-group row">
+    <label class="col-form-label col-sm-4 text-left col-md-" for="inputNom">
+      <h5 class="river">
+        <b>Nom : *</b>
+      </h5>
+    </label>
+    <div class="col-sm-8 col-12 col-md-7 col-lg-8 col-xl-8">
+      <input type="text" class="form-control" id="inputNom" [(ngModel)]="User.firstName" />
+    </div>
+
+
+    <label class="col-form-label col-sm-4 text-left col-md-" for="inputPrenom">
+      <h5 class="river">
+        <b>Prénom : *</b>
+      </h5>
+    </label>
+    <div class="col-sm-8 col-12 col-md-7 col-lg-8 col-xl-8">
+      <input type="text" class="form-control" id="inputPrenom" [(ngModel)]="User.lastName">
+    </div>
+
+
+    <label class="col-form-label col-sm-4 text-left col-md-" for="inputGrade">
+      <h5 class="river">
+        <b>Grade : *</b>
+      </h5>
+    </label>
+    <div class="col-sm-8 col-12 col-md-7 col-lg-8 col-xl-8">
+      <input type="text" class="form-control" id="inputGrade" [(ngModel)]="User.rank">
+    </div>
+
+
+    <label class="col-form-label col-sm-4 text-left col-md-" for="inputService">
+      <h5 class="river">
+        <b>Service : *</b>
+      </h5>
+    </label>
+    <div class="col-sm-8 col-12 col-md-7 col-lg-8 col-xl-8">
+      <input type="text" class="form-control" id="inputService" [(ngModel)]="User.service">
+    </div>
+
+
+    <label class="col-form-label col-sm-4 text-left col-md-" for="inputBureau">
+      <h5 class="river">
+        <b> Bureau: *</b>
+      </h5>
+    </label>
+    <div class="col-sm-8 col-12 col-md-7 col-lg-8 col-xl-8">
+      <input type="text" class="form-control" id="inputBureau" [(ngModel)]="User.office">
+    </div>
+
+
+    <label class="col-form-label col-sm-4 text-left col-md-" for="inputTeam">
+      <h5 class="river">
+        <b> Equipe: *</b>
+      </h5>
+    </label>
+    <div class="col-sm-8 col-12 col-md-7 col-lg-8 col-xl-8">
+      <input type="text" class="form-control" id="inputTeam" [(ngModel)]="User.team">
+
+   </div>
+  </div>
+    <div class="row">
+        <div class="col-12 col-sm-2"></div>
+      <div class="col-12 col-sm-4">
+        <div id="landing3" class="Positionbouton PositionboutonXL PositionboutonLG PositionboutonMD PositionboutonXS PositionboutonSM">
+          <a class="button btn btn-block btn-lg boutonloginXL boutonloginLG boutonloginMD boutonloginSM boutonloginXS" >Annuler</a>
+        </div>
+
+      </div>
+      <div class="col-12 col-sm-4">
+        <div id="landing2" class="Positionbouton PositionboutonXL PositionboutonLG PositionboutonMD PositionboutonXS PositionboutonSM">
+          <a class="button btn btn-block btn-lg boutonloginXL boutonloginLG boutonloginMD boutonloginSM boutonloginXS" (click)="saveUser()"  >Sauvegarder</a>
+
+        </div>
+      </div>
+    </div>
+
+      </div>
+      </div>
+  </div>
+
+

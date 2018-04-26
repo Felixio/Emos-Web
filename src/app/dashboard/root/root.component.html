@@ -1,18 +1,33 @@
-<div class="row">
-    <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
-      <ul class="nav nav-pills flex-column">
-        <li class="nav-item">
-          <a class="nav-link" href="#" routerLinkActive="active" routerLink="/dashboard/home">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" routerLinkActive="active" routerLink="/dashboard/settings">Settings</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" routerLinkActive="active" routerLink="/dashboard/users/list-users">Gestion utilisateurs</a>
-        </li>
+
+<div class="row ">
+    <aside class="app-sidebar">
+
+    <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-river sidebar">
+        <div class="app-sidebar__user bg-marina">
+            <img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image">
+            <div>
+                <p class="app-sidebar__user-name white">Bienvenue</p>
+                <p class="app-sidebar__user-designation white Positiontitrelog">Alexandre BODARD</p>
+            </div>
+        </div>
+      <ul class="app-menu">
+        <li class="river font-weight-bold">
+
+             <a class="app-menu__item" href=""><i class="app-menu__icon fa fa-2x   fa-home" href="#"></i><span class="app-menu__label positiontexte" href="#">Accueil</span></a>
+             <a class="app-menu__item" href=""><i class="app-menu__icon fa fa-shopping-cart fa-2x" href=""></i><span class="app-menu__label positiontexte" href="">Inventaire</span></a>
+             <a class="app-menu__item" href=""><i class="app-menu__icon fa fa-pencil fa-2x" href=""></i><span class="app-menu__label positiontexte" href="">Historique Mouvement</span></a>
+             <a class="app-menu__item" href="#" routerLinkActive="active" routerLink="/dashboard/users/list-users"><i class="app-menu__icon fa fa-user  fa-2x"></i><span class="app-menu__label positiontexte">Gestion Utilisateurs</span></a>
+             <a class="app-menu__item" href=""><i class="app-menu__icon fa fa-book  fa-2x"></i><span class="app-menu__label positiontexte">Gestion Sources</span></a>
+             <a class="app-menu__item" href="l"><i class="app-menu__icon fa fa-exclamation-triangle  fa-2x"></i><span class="app-menu__label positiontexte">Gestion Alertes</span></a>
+             <a class="app-menu__item" href=""><i class="app-menu__icon fa fa-2x fa-gears"></i><span class="app-menu__label positiontexte">Gestion Outlis</span></a>
+             <a class="app-menu__item" href=""><i class="app-menu__icon fa fa-2x fa-bar-chart-o "></i><span class="app-menu__label positiontexte">KPI</span></a>
+             <a class="app-menu__item" href=""><i class="app-menu__icon fa fa-2x fa-comments-o"></i><span class="app-menu__label positiontexte">Contact</span></a>
+            </li>
       </ul>
     </nav>
+  </aside>
     <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
         <router-outlet></router-outlet>
     </main>
 </div>
+

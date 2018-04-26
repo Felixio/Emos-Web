@@ -11,6 +11,11 @@ import { ListUsersComponent } from './Users/list-users/list-users.component';
 
 import { AuthGuard } from '../auth.guard';
 import { SettingsComponent } from './settings/settings.component';
+import { GridModule } from '@syncfusion/ej2-ng-grids';
+import { PageService, SortService, FilterService, GroupService } from '@syncfusion/ej2-ng-grids';
+import { DialogComponent } from '@syncfusion/ej2-ng-popups';
+import { UserFormComponent } from './Users/user-form/user-form.component';
+
 
 
 @NgModule({
@@ -18,10 +23,11 @@ import { SettingsComponent } from './settings/settings.component';
     CommonModule,
     FormsModule,
     routing,
-    SharedModule
+    SharedModule,
+    GridModule
   ],
-  declarations: [RootComponent, HomeComponent, SettingsComponent, ListUsersComponent],
+  declarations: [RootComponent, HomeComponent, SettingsComponent, ListUsersComponent, DialogComponent, UserFormComponent],
   exports:      [ ],
-  providers:    [AuthGuard, DashboardService]
+  providers:    [AuthGuard, DashboardService, PageService, SortService, FilterService,  GroupService]
 })
 export class DashboardModule { }

@@ -1,8 +1,31 @@
-<div>
- <strong> list-users works!</strong>
- <ul>
-   <li *ngFor="let user of users">
-     {{user.firstName}}
-   </li>
- </ul>
+<div class="app-content">
+  <div class="app-title">
+    <div class="TitreXS TitreSM">
+        <h1 class="river font-weight-bold"><i class="fa fa-lg  fa-user"></i>&nbsp; Gestion des utilisateurs</h1>
+        <p></p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+        <li class="breadcrumb-item">
+        </li>
+    </ul>
+</div>
+
+<div id="DivListUsers" #targetDiv class="tile mb-4 positionXS positionSM positionMD"  >
+
+  <div >
+    <ejs-grid id='userGrid' #userGrid   [dataSource]="users" [allowPaging]='true' [allowFiltering]='true' [allowSorting]='true' [pageSettings]='pageSettings'  (rowSelected)='handleSelect($event)'>
+        <e-columns class="row bg-white ConventionXL ConventionLG ConventionMD ConventionSM ConventionXS RowXL" style="box-shadow: rgba(0, 0, 0, 0.5) 0.7px 2px 5px;">
+            <e-column field='firstName' headerText='Nom' textAlign='center' width=90></e-column>
+            <e-column field='lastName' headerText='Prénom' textAlign='center' width=120></e-column>
+            <e-column field='rank' headerText='Grade' textAlign='center' ></e-column>
+            <e-column field='office' headerText='Bureau' textAlign='center' ></e-column>
+            <e-column field='service' headerText='Service' textAlign='center'  ></e-column>
+            <e-column field='team' headerText='Equipe' textAlign='center'  ></e-column>
+        </e-columns>
+        </ejs-grid>
+</div>
+<div #container ></div>
+<ejs-dialog *ngIf="showDialog"  [isModal]='true'  id='dialog' showOnInit="false" #ejDialog  width='75%' [target]="target" (overlayClick)="overlayClick()" >
+  <app-user-form  #userForm (update)="update($event)"   ></app-user-form>
+</ejs-dialog>
 </div>
