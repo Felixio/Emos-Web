@@ -24,6 +24,7 @@ export class ListUsersComponent implements OnInit {
   @ViewChild('targetDiv', { read: ElementRef }) targetDiv: ElementRef;
   // The Dialog shows within the target element.
   @ViewChild('userForm') userForm: UserFormComponent;
+
   public targetElement: HTMLElement;
   public target = '#body';
   constructor(private dashboardService: DashboardService) { }
@@ -39,6 +40,7 @@ export class ListUsersComponent implements OnInit {
     error => {
       // this.notificationService.printErrorMessage(error);
     });
+    this.userForm.ModificationMode = '';
   }
 
   // initializeTarget() {
@@ -47,13 +49,16 @@ export class ListUsersComponent implements OnInit {
   // }
 
   handleSelect(args: RowSelectEventArgs) {
+
     this.showDialog = true;
      console.log(args.data);
 
     // this.initializeTarget();
     this.userForm.User = <User> args.data;
-    this.userForm.ModificationMode = 'Edit';
-    this.ejDialog.show();
+     this.userForm.ModificationMode = 'Edit';
+     this.userForm.title = 'Modifier utilisateur';
+     this.ejDialog.show();
+
   }
 
   overlayClick() {
@@ -61,17 +66,24 @@ export class ListUsersComponent implements OnInit {
   }
 
   update(user) {
-    this.ejDialog.hide();
-
-    this.dashboardService.getUsers()
-    .subscribe((users: Array<User>) => {
+        this.dashboardService.getUsers()
+   .subscribe((users: Array<User>) => {
       this.users = users;
       this.userGrid.dataSource = users;
-      this.userGrid.refresh();
-    },
+         },
     error => {
       // this.notificationService.printErrorMessage(error);
     });
+    this.ejDialog.hide();
+    this.ejDialog.refresh();
+  }
+  click_AddUser() {
+
+    this.showDialog = true;
+    this.userForm.User = {  firstName: '', id: 0, lastName: '', office: '',   rank: '', service: '', team: ''   };
+    this.userForm.ModificationMode = 'Add';
+    this.userForm.title = 'Ajouter utilisateur';
+    this.ejDialog.show();
 
   }
 

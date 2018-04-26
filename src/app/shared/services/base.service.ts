@@ -13,8 +13,8 @@ export abstract class BaseService {
         return Observable.throw(applicationError);
       }
 
-      let modelStateErrors: string = '';
-      let serverError = error.json();
+      let modelStateErrors: string ;
+      const serverError = error.json();
 
       if (!serverError.type) {
         for (let key in serverError) {

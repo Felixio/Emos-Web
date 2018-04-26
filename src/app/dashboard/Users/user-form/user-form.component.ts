@@ -11,8 +11,9 @@ import { DashboardService } from '../../services/dashboard.service';
 export class UserFormComponent implements OnInit {
 
   notificationService: any;
+   title: string;
   @Input() User: User = {  firstName: '', id: 0, lastName: '', office: '',   rank: '', service: '', team: ''   };
-  @Input() ModificationMode: string;
+    ModificationMode: string ;
   @Output() update = new EventEmitter<any>();
 
   constructor(private dashboardService: DashboardService) { }
@@ -22,16 +23,30 @@ export class UserFormComponent implements OnInit {
   }
 
   saveUser() {
-    this.dashboardService.updateUser(this.User)
-    .subscribe((user: User) => {
-      this.User = user;
-      this.update.emit(user);
 
-    },
-    error => {
-      // this.notificationService.printErrorMessage(error);
-    });
-  }
+    if (this.ModificationMode === 'Edit') {
+      this.title = 'Modifier utilisateur';
+      this.dashboardService.updateUser(this.User)
+      .subscribe((user: User) => {
+        this.User = user;
+        this.update.emit(user);
+        },
+      error => {
+        // this.notificationService.printErrorMessage(error);
+      });
+    } else if (this.ModificationMode === 'Add') {
+      this.title = 'Ajouter utilisateur';
+      this.dashboardService.addUser(this.User)
+      .subscribe((user: User) => {
+        this.User = user;
+        this.update.emit(user);
+        },
+      error => {
+        // this.notificationService.printErrorMessage(error);
+      });
+    }
+    this.ModificationMode = '';
+     }
 
   }
 

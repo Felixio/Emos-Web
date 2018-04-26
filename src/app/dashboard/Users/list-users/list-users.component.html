@@ -24,8 +24,14 @@
         </e-columns>
         </ejs-grid>
 </div>
+
+<div><h6 style="margin-top: 14px;" class="font-weight-bold">Ajouter un utilisateur</h6></div>
+<td class="text-center">
+    <a (click)='click_AddUser($event)'><i class="fa fa-3x fa-plus river marina-hover"  ></i> </a>
+</td>
+
 <div #container ></div>
 <ejs-dialog *ngIf="showDialog"  [isModal]='true'  id='dialog' showOnInit="false" #ejDialog  width='75%' [target]="target" (overlayClick)="overlayClick()" >
-  <app-user-form  #userForm (update)="update($event)"   ></app-user-form>
+  <app-user-form  #userForm (update)="update($event)" ></app-user-form>
 </ejs-dialog>
 </div>
