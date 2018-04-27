@@ -3,11 +3,17 @@
     <div class="TitreXS TitreSM">
         <h1 class="river font-weight-bold"><i class="fa fa-lg  fa-user"></i>&nbsp; Gestion des utilisateurs</h1>
         <p></p>
+
     </div>
     <ul class="app-breadcrumb breadcrumb">
         <li class="breadcrumb-item">
         </li>
     </ul>
+
+<td class="text-center">
+    <h6 style="margin-top: 14px;" class="font-weight-bold">Ajouter un utilisateur</h6>
+    <a (click)='click_AddUser($event)'><i class="fa fa-3x fa-plus river marina-hover"  ></i> </a>
+</td>
 </div>
 
 <div id="DivListUsers" #targetDiv class="tile mb-4 positionXS positionSM positionMD"  >
@@ -23,15 +29,12 @@
             <e-column field='office' headerText='Bureau' textAlign='center' ></e-column>
             <e-column field='service' headerText='Service' textAlign='center'  ></e-column>
             <e-column field='team' headerText='Equipe' textAlign='center'  ></e-column>
-            <e-column headerText='Commands' width=120 [commands]='commands'></e-column>
+            <e-column headerText='' width=120 [commands]='commands'></e-column>
         </e-columns>
         </ejs-grid>
 </div>
 
-<div><h6 style="margin-top: 14px;" class="font-weight-bold">Ajouter un utilisateur</h6></div>
-<td class="text-center">
-    <a (click)='click_AddUser($event)'><i class="fa fa-3x fa-plus river marina-hover"  ></i> </a>
-</td>
+
 
 <div #container ></div>
 <div *ngIf="showDialog">
