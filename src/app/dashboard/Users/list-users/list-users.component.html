@@ -15,7 +15,7 @@
   <div >
     <ejs-grid id='userGrid' #userGrid   [dataSource]="users" [allowPaging]='true'
     [allowFiltering]='true' [allowSorting]='true' [pageSettings]='pageSettings' [editSettings]='editSettings'
-    (rowSelected)='handleSelect($event)'>
+    >
         <e-columns class="row bg-white ConventionXL ConventionLG ConventionMD ConventionSM ConventionXS RowXL" style="box-shadow: rgba(0, 0, 0, 0.5) 0.7px 2px 5px;">
             <e-column field='firstName' headerText='Nom' textAlign='center' width=90></e-column>
             <e-column field='lastName' headerText='Prénom' textAlign='center' width=120></e-column>
@@ -34,10 +34,27 @@
 </td>
 
 <div #container ></div>
-<div *ngIf="showDialog">
-<ejs-dialog [isModal]='true'  id='dialog' #ejDialog  width='75%' [target]="target" (overlayClick)="overlayClick()" >
-  <app-user-form  #userForm (update)="update($event)" (cancel)="cancelSave()"  ></app-user-form>
-
+<ejs-dialog #ejDialog  *ngIf="showDialog" [isModal]='true'  id='dialog'   width='75%' [target]="target" (overlayClick)="overlayClick()" >
+  <app-user-form *ngIf="showForm"  #userForm (update)="update($event)" (cancel)="cancelSave()"  ></app-user-form>
 </ejs-dialog>
+
+<ejs-dialog #confirmDialog  *ngIf="showConfirm" [isModal]='true'  id='confirm' width='40%' [target]="target" (overlayClick)="confirmDialog.hide()" >
+  Êtes-vous sûr de vouloir supprimer cet enregistrement ?
+  <div class="row">
+    <div class="col-12 col-sm-2"></div>
+  <div class="col-12 col-sm-4">
+    <div id="landing3" class="Positionbouton PositionboutonXL PositionboutonLG PositionboutonMD PositionboutonXS PositionboutonSM">
+      <a class="button btn btn-block btn-lg boutonloginXL boutonloginLG boutonloginMD boutonloginSM boutonloginXS" (click)="cancelDelete()" >Annuler</a>
+    </div>
+
+  </div>
+  <div class="col-12 col-sm-4">
+    <div id="landing2" class="Positionbouton PositionboutonXL PositionboutonLG PositionboutonMD PositionboutonXS PositionboutonSM">
+      <a class="button btn btn-block btn-lg boutonloginXL boutonloginLG boutonloginMD boutonloginSM boutonloginXS" (click)="delete()">OK</a>
+
+    </div>
+  </div>
 </div>
+</ejs-dialog>
+
 </div>

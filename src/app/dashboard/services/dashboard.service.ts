@@ -46,6 +46,7 @@ updateUser(user: User): Observable<User> {
     .map(response => response.json())
     .catch(this.handleError);
 }
+
 addUser(user: User): Observable<User> {
   const headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -57,14 +58,25 @@ addUser(user: User): Observable<User> {
     .catch(this.handleError);
 }
 
-  getHomeDetails(): Observable<HomeDetails> {
-      const headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-      const authToken = localStorage.getItem('auth_token');
-      headers.append('Authorization', `Bearer ${authToken}`);
+deleteUser(id: number): Observable<void> {
+  const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    const authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', `Bearer ${authToken}`);
 
-    return this.http.get(this.baseUrl + '/dashboard/home', {headers})
-      .map(response => response.json())
-      .catch(this.handleError);
-  }
+  return this.http.delete(this.baseUrl + '/dashboard/users/' + id, {headers})
+    .map(response => response.json())
+    .catch(this.handleError);
+}
+
+getHomeDetails(): Observable<HomeDetails> {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    const authToken = localStorage.getItem('auth_token');
+    headers.append('Authorization', `Bearer ${authToken}`);
+
+  return this.http.get(this.baseUrl + '/dashboard/home', {headers})
+    .map(response => response.json())
+    .catch(this.handleError);
+}
 }

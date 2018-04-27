@@ -31,27 +31,22 @@ export class UserFormComponent implements OnInit {
       .subscribe((user: User) => {
         this.User = user;
         this.update.emit(user);
-        },
+      },
       error => {
         // this.notificationService.printErrorMessage(error);
       });
-    } else if (this.ModificationMode === 'Add') {
+     } else if (this.ModificationMode === 'Add') {
       this.title = 'Ajouter utilisateur';
       this.dashboardService.addUser(this.User)
       .subscribe((user: User) => {
         this.User = user;
         this.update.emit(user);
-        },
+      },
       error => {
         // this.notificationService.printErrorMessage(error);
       });
     }
-
-     }
-
-
-
-
+  }
 
   cancelSave() {
     this.cancel.emit();
