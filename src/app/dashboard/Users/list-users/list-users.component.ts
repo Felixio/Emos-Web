@@ -160,7 +160,8 @@ export class ListUsersComponent implements OnInit {
     this.showForm = true;
     this.changeDetector.detectChanges();
 
-    this.userForm.User = {  firstName: '', id: 0, lastName: '', office: '',   rank: '', service: '', team: ''   };
+    this.userForm.User = {  firstName: '', id: 0, lastName: '', office: '',   rank: '', service: '', team: '' , badgeCode: ''   };
+
     this.userForm.ModificationMode = 'Add';
     this.userForm.title = 'Ajouter utilisateur';
     setTimeout(() => { this.confirmDialog.show(); });

@@ -6,4 +6,5 @@ export interface User {
   office: string;
   team: string;
   rank: string;
+  badgeCode: string;
 }
