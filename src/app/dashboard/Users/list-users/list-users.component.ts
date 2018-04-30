@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, OnChanges, SimpleChanges, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { User } from '../../models/user.interface';
 import { DashboardService } from '../../services/dashboard.service';
-import {PageSettingsModel, IRow, Column } from '@syncfusion/ej2-ng-grids';
+import {PageSettingsModel, IRow, Column, FilterSettingsModel } from '@syncfusion/ej2-ng-grids';
 import { GridComponent, RowSelectEventArgs } from '@syncfusion/ej2-ng-grids';
 import { DialogComponent } from '@syncfusion/ej2-ng-popups';
 import { UserFormComponent } from '../user-form/user-form.component';
@@ -20,7 +20,7 @@ L10n.load({
       },
       'pager': {
           'currentPageInfo': '{0} sur {1} pages',
-          'totalItemsInfo': '({0} pages)',
+          'totalItemsInfo': '({0} items)',
           'firstPageTooltip': '1ère page',
           'lastPageTooltip': 'Dernière page',
           'nextPageTooltip': 'Page suivante',
@@ -38,17 +38,19 @@ L10n.load({
 })
 export class ListUsersComponent implements OnInit {
 
+  public pageSettings: PageSettingsModel;
   public editSettings: EditSettingsModel;
+  public filterSettings: FilterSettingsModel;
   public commands: CommandModel[];
+
   showDialog = false;
   showConfirm = false;
   showForm = false;
 
-  @ViewChild('userGrid') public userGrid: GridComponent;
   public users: Array<User> ;
   public currentUser: User;
 
-  public pageSettings: PageSettingsModel;
+  @ViewChild('userGrid') public userGrid: GridComponent;
   @ViewChild('ejDialog') ejDialog: DialogComponent;
   @ViewChild('confirmDialog') confirmDialog: DialogComponent;
   // Create element reference for dialog target element.
@@ -59,11 +61,10 @@ export class ListUsersComponent implements OnInit {
 
   public targetElement: HTMLElement;
   public target = '#body';
+
   constructor(private dashboardService: DashboardService, private changeDetector: ChangeDetectorRef) { }
 
   ngOnInit() {
-
-    this.pageSettings = { pageSize: 10 };
 
     this.dashboardService.getUsers()
     .subscribe((users: Array<User>) => {
@@ -73,12 +74,21 @@ export class ListUsersComponent implements OnInit {
       // this.notificationService.printErrorMessage(error);
     });
 
+    this.pageSettings = { pageSize: 10 };
     this.editSettings = { allowEditing: false,
       allowAdding: false, allowDeleting: true, mode: 'Normal', allowEditOnDblClick: false };
-    this.commands = [{ type: 'Edit', buttonOption: { iconCss: ' e-icons e-edit', cssClass: 'e-flat', click: this.onClickEdit.bind(this) } },
+
+      this.filterSettings = {
+        ignoreAccent: true,
+        type: 'Excel'
+    };
+
+    this.commands = [
+      { type: 'Edit', buttonOption: { iconCss: ' e-icons e-edit', cssClass: 'e-flat', click: this.onClickEdit.bind(this) } },
       { type: 'Delete', buttonOption: { iconCss: 'e-icons e-delete', cssClass: 'e-flat', click: this.onClickDelete.bind(this) } },
       { type: 'Save', buttonOption: { iconCss: 'e-icons e-update', cssClass: 'e-flat' } },
-      { type: 'Cancel', buttonOption: { iconCss: 'e-icons e-cancel-icon', cssClass: 'e-flat' } }];
+      { type: 'Cancel', buttonOption: { iconCss: 'e-icons e-cancel-icon', cssClass: 'e-flat' } }
+    ];
   }
 
 
@@ -87,7 +97,6 @@ export class ListUsersComponent implements OnInit {
     this.currentUser = <User> rowObj.data;
 
     this.showConfirm = true;
-    // this.showForm = true;
     this.changeDetector.detectChanges();
 
     setTimeout(() => { this.confirmDialog.show(); });
@@ -156,15 +165,15 @@ export class ListUsersComponent implements OnInit {
 
   click_AddUser() {
 
-    this.showDialog = true;
-    this.showForm = true;
+    if (!this.showDialog) { this.showDialog = true; }
+    if (!this.showForm) { this.showForm = true; }
     this.changeDetector.detectChanges();
 
     this.userForm.User = {  firstName: '', id: 0, lastName: '', office: '',   rank: '', service: '', team: '' , badgeCode: ''   };
 
     this.userForm.ModificationMode = 'Add';
     this.userForm.title = 'Ajouter utilisateur';
-    setTimeout(() => { this.confirmDialog.show(); });
+    setTimeout(() => { this.ejDialog.show(); });
   }
 
   cancelSave() {
