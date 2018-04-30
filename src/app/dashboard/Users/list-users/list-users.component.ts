@@ -157,7 +157,7 @@ export class ListUsersComponent implements OnInit {
   click_AddUser() {
 
     this.showDialog = true;
-    this.userForm.User = {  firstName: '', id: 0, lastName: '', office: '',   rank: '', service: '', team: ''   };
+    this.userForm.User = {  firstName: '', id: 0, lastName: '', office: '',   rank: '', service: '', team: '' , badgeCode: ''   };
     this.userForm.ModificationMode = 'Add';
     this.userForm.title = 'Ajouter utilisateur';
     this.ejDialog.show();

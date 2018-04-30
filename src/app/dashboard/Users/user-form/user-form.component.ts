@@ -12,7 +12,7 @@ export class UserFormComponent implements OnInit {
 
   notificationService: any;
    title: string;
-  @Input() User: User = {  firstName: '', id: 0, lastName: '', office: '',   rank: '', service: '', team: ''   };
+  @Input() User: User = {  firstName: '', id: 0, badgeCode: '' ,  lastName: '', office: '',   rank: '', service: '', team: ''   };
     ModificationMode: string ;
   @Output() update = new EventEmitter<any>();
   @Output() cancel = new EventEmitter<any>();
