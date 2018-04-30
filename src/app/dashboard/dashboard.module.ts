@@ -13,7 +13,7 @@ import { AuthGuard } from '../auth.guard';
 import { SettingsComponent } from './settings/settings.component';
 import { GridModule, CommandColumnService, EditService } from '@syncfusion/ej2-ng-grids';
 import { PageService, SortService, FilterService, GroupService } from '@syncfusion/ej2-ng-grids';
-import { DialogComponent } from '@syncfusion/ej2-ng-popups';
+import { DialogModule } from '@syncfusion/ej2-ng-popups';
 import { UserFormComponent } from './Users/user-form/user-form.component';
 
 
@@ -24,9 +24,11 @@ import { UserFormComponent } from './Users/user-form/user-form.component';
     FormsModule,
     routing,
     SharedModule,
-    GridModule
+    GridModule,
+    DialogModule
+
   ],
-  declarations: [RootComponent, HomeComponent, SettingsComponent, ListUsersComponent, DialogComponent, UserFormComponent],
+  declarations: [RootComponent, HomeComponent, SettingsComponent, ListUsersComponent, UserFormComponent],
   exports:      [ ],
   providers:    [AuthGuard, DashboardService, EditService, PageService, CommandColumnService, SortService, FilterService,  GroupService]
 })
