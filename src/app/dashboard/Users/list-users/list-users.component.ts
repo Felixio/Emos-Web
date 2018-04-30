@@ -157,12 +157,13 @@ export class ListUsersComponent implements OnInit {
   click_AddUser() {
 
     this.showDialog = true;
+    this.showForm = true;
+    this.changeDetector.detectChanges();
     this.userForm.errors = '';
-    this.userForm.User = {  firstName: '', id: 0, lastName: '', office: '',
-      rank: '', service: '', team: '' , badgeCode: ''   };
+    this.userForm.User = {  firstName: '', id: 0, lastName: '', office: '',   rank: '', service: '', team: '' , badgeCode: ''   };
     this.userForm.ModificationMode = 'Add';
     this.userForm.title = 'Ajouter utilisateur';
-    this.ejDialog.show();
+    setTimeout(() => { this.confirmDialog.show(); });
   }
 
   cancelSave() {

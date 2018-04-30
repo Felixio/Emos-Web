@@ -12,7 +12,7 @@
 
 <td class="text-center">
     <h6 style="margin-top: 14px;" class="font-weight-bold">Ajouter un utilisateur</h6>
-    <a (click)='click_AddUser($event)'><i class="fa fa-3x fa-plus river marina-hover"  ></i> </a>
+    <a (click)='click_AddUser()'><i class="fa fa-3x fa-plus river marina-hover"  ></i> </a>
 </td>
 </div>
 
@@ -38,7 +38,7 @@
 
 
 <div #container ></div>
-<ejs-dialog #ejDialog  *ngIf="showDialog" [isModal]='true'  id='dialog'   width='75%' [target]="target" (overlayClick)="overlayClick()" >
+<ejs-dialog #ejDialog *ngIf="showDialog" [isModal]='true'  id='dialog'   width='75%' [target]="target" (overlayClick)="overlayClick()" >
   <app-user-form *ngIf="showForm"  #userForm (update)="update($event)" (cancel)="cancelSave()"  ></app-user-form>
 </ejs-dialog>
 
