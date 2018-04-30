@@ -12,7 +12,8 @@ export class UserFormComponent implements OnInit {
 
   notificationService: any;
    title: string;
-  @Input() User: User = {  firstName: '', id: 0, badgeCode: '' ,  lastName: '', office: '',   rank: '', service: '', team: ''   };
+   errors: string;
+   @Input() User: User = {  firstName: '', id: 0, badgeCode: '' ,  lastName: '', office: '',   rank: '', service: '', team: ''   };
     ModificationMode: string ;
   @Output() update = new EventEmitter<any>();
   @Output() cancel = new EventEmitter<any>();
@@ -24,8 +25,11 @@ export class UserFormComponent implements OnInit {
   }
 
   saveUser() {
-
-    if (this.ModificationMode === 'Edit') {
+ this.errors = '';
+if (this.User.badgeCode === '' || this.User.firstName === '' || this.User.lastName === ''
+ || this.User.office === '' || this.User.rank === '' || this.User.service === '' || this.User.team === '' ) {
+  this.errors = 'données non valides';
+} else if (this.ModificationMode === 'Edit') {
       this.title = 'Modifier utilisateur';
       this.dashboardService.updateUser(this.User)
       .subscribe((user: User) => {
@@ -47,6 +51,7 @@ export class UserFormComponent implements OnInit {
       });
     }
   }
+
 
   cancelSave() {
     this.cancel.emit();
