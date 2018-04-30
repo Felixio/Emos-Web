@@ -4,7 +4,8 @@
               {{title}}
           </h2>
       <div class="modal-content">
-  <div class="my-4 form-group row">
+
+  <div class="my-4 form-group row" #form>
     <label class="col-form-label col-sm-4 text-left col-md-" for="inputNom">
       <h5 class="river">
         <b>Nom : *</b>
@@ -21,7 +22,7 @@
       </h5>
     </label>
     <div class="col-sm-8 col-12 col-md-7 col-lg-8 col-xl-8">
-      <input type="text" class="form-control" id="inputPrenom" [(ngModel)]="User.lastName">
+      <input type="text" class="form-control" id="inputPrenom" [(ngModel)]="User.lastName" >
     </div>
 
 
@@ -72,6 +73,9 @@
   <div class="col-sm-8 col-12 col-md-7 col-lg-8 col-xl-8">
     <input type="text" class="form-control" id="inputBadge" [(ngModel)]="User.badgeCode" />
   </div>
+  <div *ngIf="errors" class="alert alert-danger" role="alert">
+      <strong>Oops!</strong> {{errors}}
+    </div>
   </div>
     <div class="row">
         <div class="col-12 col-sm-2"></div>
@@ -83,9 +87,8 @@
       </div>
       <div class="col-12 col-sm-4">
         <div id="landing2" class="Positionbouton PositionboutonXL PositionboutonLG PositionboutonMD PositionboutonXS PositionboutonSM">
-          <a class="button btn btn-block btn-lg boutonloginXL boutonloginLG boutonloginMD boutonloginSM boutonloginXS" (click)="saveUser()">Sauvegarder</a>
-
-        </div>
+          <button type="submit" class="button btn btn-block btn-lg boutonloginXL boutonloginLG boutonloginMD boutonloginSM boutonloginXS" [disabled]="form.invalid"  (click)="saveUser()" >Sauvegarder</button>
+                 </div>
       </div>
     </div>
 
