@@ -68,6 +68,16 @@ deleteUser(id: number): Observable<void> {
     .map(response => response.json())
     .catch(this.handleError);
 }
+verifUsers(firstName: string, lastName: string): Observable<Array<User>> {
+  const headers = new Headers();
+  headers.append('Content-Type', 'application/json');
+  const authToken = localStorage.getItem('auth_token');
+  headers.append('Authorization', `Bearer ${authToken}`);
+
+return this.http.get(this.baseUrl + '/dashboard/users', {headers})
+.map(response => response.json())
+.catch(this.handleError);
+}
 
 getHomeDetails(): Observable<HomeDetails> {
     const headers = new Headers();
