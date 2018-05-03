@@ -74,7 +74,7 @@ verifUsers(firstName: string, lastName: string): Observable<Array<User>> {
   const authToken = localStorage.getItem('auth_token');
   headers.append('Authorization', `Bearer ${authToken}`);
 
-return this.http.get(this.baseUrl + '/dashboard/users', {headers})
+return this.http.get(this.baseUrl + '/dashboard/users/' + firstName + '/' + lastName, {headers})
 .map(response => response.json())
 .catch(this.handleError);
 }

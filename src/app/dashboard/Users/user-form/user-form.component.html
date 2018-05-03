@@ -5,17 +5,15 @@
           </h2>
       <div class="modal-content">
 
-  <div class="my-4 form-group row" #form>
+  <div class="my-4 form-group row">
     <label class="col-form-label col-sm-4 text-left col-md-" for="inputNom">
       <h5 class="river">
         <b>Nom : *</b>
       </h5>
     </label>
     <div class="col-sm-8 col-12 col-md-7 col-lg-8 col-xl-8">
-      <input type="text" class="form-control" id="inputNom" [(ngModel)]="User.firstName" />
+      <input #inputNom type="text" required class="form-control" id="inputNom" name="inputNom" [(ngModel)]="User.firstName" />
     </div>
-
-
     <label class="col-form-label col-sm-4 text-left col-md-" for="inputPrenom">
       <h5 class="river">
         <b>Prénom : *</b>
@@ -73,7 +71,9 @@
   <div class="col-sm-8 col-12 col-md-7 col-lg-8 col-xl-8">
     <input type="text" class="form-control" id="inputBadge" [(ngModel)]="User.badgeCode" />
   </div>
-
+  <div *ngIf="ShowCheckBox" class="col-sm-8 col-12 col-md-7 col-lg-8 col-xl-8">
+  <input type="checkbox" id="checkbox_Add_User" name="checkbox_Add_User" [(ngModel)]="forceAddUser" >
+  </div>
   </div>
     <div class="row">
         <div class="col-12 col-sm-2"></div>
@@ -85,7 +85,7 @@
       </div>
       <div class="col-12 col-sm-4">
         <div id="landing2" class="Positionbouton PositionboutonXL PositionboutonLG PositionboutonMD PositionboutonXS PositionboutonSM">
-          <button type="submit" class="button btn btn-block btn-lg boutonloginXL boutonloginLG boutonloginMD boutonloginSM boutonloginXS" [disabled]="form.invalid"  (click)="saveUser()" >Sauvegarder</button>
+          <button type="submit" class="button btn btn-block btn-lg boutonloginXL boutonloginLG boutonloginMD boutonloginSM boutonloginXS"  (click)="saveUser()" >Sauvegarder</button>
                  </div>
       </div>
     </div>
