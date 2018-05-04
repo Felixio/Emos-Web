@@ -71,9 +71,16 @@
   <div class="col-sm-8 col-12 col-md-7 col-lg-8 col-xl-8">
     <input type="text" class="form-control" id="inputBadge" [(ngModel)]="User.badgeCode" />
   </div>
-  <div *ngIf="ShowCheckBox" class="col-sm-8 col-12 col-md-7 col-lg-8 col-xl-8">
-  <input type="checkbox" id="checkbox_Add_User" name="checkbox_Add_User" [(ngModel)]="forceAddUser" >
+
+  <div *ngIf="ShowCheckBox" class="input-group col-form-label col-sm-4 text-left col-md-11" style ="margin-left: 40px;">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+        <input type="checkbox" aria-label="Checkbox for following text input" id="checkbox_Add_User" name="checkbox_Add_User" [(ngModel)]="forceAddUser">
+      </div>
+    </div>
+    <span class=" form-control custom-control-description"  aria-label="Text input with checkbox">Merci de cocher pour forcer la création</span>
   </div>
+
   </div>
     <div class="row">
         <div class="col-12 col-sm-2"></div>
